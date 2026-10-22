@@ -1,0 +1,396 @@
+E741 Ambiguous variable name: `l`
+  --> app/actualizador.py:57:45
+   |
+55 |     except OSError:
+56 |         return list(DEFAULT_REQUIREMENTS)
+57 |     specs = [l.split("#", 1)[0].strip() for l in lineas]
+   |                                             ^
+58 |     return [s for s in specs if s] or list(DEFAULT_REQUIREMENTS)
+   |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> app/scraping.py:2:1
+   |
+ 1 |   # scraping.py
+ 2 | / import os
+ 3 | | import time
+ 4 | | from pathlib import Path
+ 5 | |
+ 6 | | from core import bloqueos, buscadores, categorias
+ 7 | | from core.config import ConfigStore, DEFAULT_CONFIG, atomic_write_json, load_settings, output_path
+ 8 | | from core.dataset import (
+ 9 | |     REASON_LABELS, build_metadata, get_profile, normalize_url, select_documents, write_manifest,
+10 | | )
+11 | | from core.paralelo import run_parallel
+12 | | from core.procesador import WebProcessor
+13 | | from core.red import AdaptiveRateLimiter, DomainRateLimiter, RateLimiter, request_with_retry
+   | |____________________________________________________________________________________________^
+14 |
+15 |   # Workers concurrentes para búsqueda anidada (keywords en paralelo).
+   |
+help: Organize imports
+   |
+6  | from core import bloqueos, buscadores, categorias
+   - from core.config import ConfigStore, DEFAULT_CONFIG, atomic_write_json, load_settings, output_path
+7  + from core.config import DEFAULT_CONFIG, ConfigStore, atomic_write_json, load_settings, output_path
+8  | from core.dataset import (
+   -     REASON_LABELS, build_metadata, get_profile, normalize_url, select_documents, write_manifest,
+9  +     REASON_LABELS,
+10 +     build_metadata,
+11 +     get_profile,
+12 +     normalize_url,
+13 +     select_documents,
+14 +     write_manifest,
+15 | )
+   |
+
+F401 [*] `core.red.RateLimiter` imported but unused
+  --> app/scraping.py:13:62
+   |
+11 | from core.paralelo import run_parallel
+12 | from core.procesador import WebProcessor
+13 | from core.red import AdaptiveRateLimiter, DomainRateLimiter, RateLimiter, request_with_retry
+   |                                                              ^^^^^^^^^^^
+14 |
+15 | # Workers concurrentes para búsqueda anidada (keywords en paralelo).
+   |
+help: Remove unused import: `core.red.RateLimiter`
+   |
+12 | from core.procesador import WebProcessor
+   - from core.red import AdaptiveRateLimiter, DomainRateLimiter, RateLimiter, request_with_retry
+13 + from core.red import AdaptiveRateLimiter, DomainRateLimiter, request_with_retry
+14 |
+   |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> app/ui.py:2:1
+   |
+ 1 |   # ui.py
+ 2 | / import io
+ 3 | | import queue
+ 4 | | import os
+ 5 | | import sys
+ 6 | | import threading
+ 7 | | import time
+ 8 | | from pathlib import Path
+ 9 | | import flet as ft
+10 | | from app.scraping import IntegratedCodeScraper
+11 | | from core.config import load_settings, save_settings
+12 | | from core.dataset import PROFILES, OBJECTIVES
+13 | | from core.version import APP_TITLE
+   | |__________________________________^
+help: Organize imports
+   |
+2  | import io
+3  + import os
+4  | import queue
+   - import os
+5  | import sys
+6  | import threading
+7  | import time
+8  | from pathlib import Path
+9  +
+10 | import flet as ft
+11 +
+12 | from app.scraping import IntegratedCodeScraper
+13 | from core.config import load_settings, save_settings
+   - from core.dataset import PROFILES, OBJECTIVES
+14 + from core.dataset import OBJECTIVES, PROFILES
+15 | from core.version import APP_TITLE
+   |
+
+W292 [*] No newline at end of file
+   --> app/ui.py:763:21
+    |
+761 |                 self.page.update()
+762 |             except Exception:
+763 |                 pass
+    |                     ^
+help: Add trailing newline
+    |
+762 |             except Exception:
+    -                 pass
+763 +                 pass
+    |
+
+F401 [*] `time` imported but unused
+ --> core/buscadores.py:2:8
+  |
+1 | # buscadores.py
+2 | import time
+  |        ^^^^
+3 |
+4 | from ddgs import DDGS
+  |
+help: Remove unused import: `time`
+  |
+1 | # buscadores.py
+  - import time
+2 |
+  |
+
+F401 [*] `.red.RateLimiter` imported but unused
+ --> core/buscadores.py:6:39
+  |
+4 | from ddgs import DDGS
+5 |
+6 | from .red import AdaptiveRateLimiter, RateLimiter, backoff_delay
+  |                                       ^^^^^^^^^^^
+help: Remove unused import: `.red.RateLimiter`
+  |
+5 |
+  - from .red import AdaptiveRateLimiter, RateLimiter, backoff_delay
+6 + from .red import AdaptiveRateLimiter, backoff_delay
+7 |
+  |
+
+I001 [*] Import block is un-sorted or un-formatted
+ --> core/buscawebs.py:2:1
+  |
+1 |   # buscawebs.py
+2 | / import random
+3 | | import time
+4 | | from pathlib import Path
+5 | | from .buscadores import MultiSearchEngine
+6 | | from .bloqueos import URLFilter
+  | |_______________________________^
+help: Organize imports
+  |
+4 | from pathlib import Path
+  - from .buscadores import MultiSearchEngine
+5 +
+6 | from .bloqueos import URLFilter
+7 + from .buscadores import MultiSearchEngine
+8 |
+  |
+
+F401 [*] `random` imported but unused
+ --> core/buscawebs.py:2:8
+  |
+1 | # buscawebs.py
+2 | import random
+  |        ^^^^^^
+3 | import time
+4 | from pathlib import Path
+  |
+help: Remove unused import: `random`
+  |
+1 | # buscawebs.py
+  - import random
+2 | import time
+  |
+
+W292 [*] No newline at end of file
+  --> core/buscawebs.py:96:6
+   |
+94 |     print(
+95 |         f"[+] Proceso finalizado. Total URLs guardadas: {total_added_session}"
+96 |     )
+   |      ^
+help: Add trailing newline
+   |
+95 |         f"[+] Proceso finalizado. Total URLs guardadas: {total_added_session}"
+   -     )
+96 +     )
+   |
+
+I001 [*] Import block is un-sorted or un-formatted
+ --> instalar.py:1:1
+  |
+1 | / import subprocess
+2 | | import sys
+3 | | from pathlib import Path
+  | |________________________^
+4 |
+5 |   def instalar_dependencias():
+  |
+help: Organize imports
+  |
+4 |
+5 +
+6 | def instalar_dependencias():
+  |
+
+W293 [*] Blank line contains whitespace
+  --> instalar.py:9:1
+   |
+ 7 |     print("  INSTALADOR AUTOMÁTICO DE DEPENDENCIAS   ")
+ 8 |     print("==========================================")
+ 9 |     
+   | ^^^^
+10 |     # Ruta al archivo de requerimientos
+11 |     req_path = Path("config/requirements.txt")
+   |
+help: Remove whitespace from blank line
+   |
+8  |     print("==========================================")
+   -     
+9  +
+10 |     # Ruta al archivo de requerimientos
+   |
+
+W293 [*] Blank line contains whitespace
+  --> instalar.py:12:1
+   |
+10 |     # Ruta al archivo de requerimientos
+11 |     req_path = Path("config/requirements.txt")
+12 |     
+   | ^^^^
+13 |     if not req_path.exists():
+14 |         print(f"[!] No se encuentra el archivo de requisitos en: {req_path}")
+   |
+help: Remove whitespace from blank line
+   |
+11 |     req_path = Path("config/requirements.txt")
+   -     
+12 +
+13 |     if not req_path.exists():
+   |
+
+W292 [*] No newline at end of file
+  --> instalar.py:32:28
+   |
+31 | if __name__ == "__main__":
+32 |     instalar_dependencias()
+   |                            ^
+help: Add trailing newline
+   |
+31 | if __name__ == "__main__":
+   -     instalar_dependencias()
+32 +     instalar_dependencias()
+   |
+
+I001 [*] Import block is un-sorted or un-formatted
+ --> main.py:2:1
+  |
+1 |   # main.py
+2 | / import flet as ft
+3 | |
+4 | | from core.version import APP_TITLE
+5 | | from app.ui import ScraperUI
+  | |____________________________^
+help: Organize imports
+  |
+3 |
+4 + from app.ui import ScraperUI
+5 | from core.version import APP_TITLE
+  - from app.ui import ScraperUI
+6 |
+  |
+
+I001 [*] Import block is un-sorted or un-formatted
+ --> tests/test_category_pdf.py:1:1
+  |
+1 | / import threading
+2 | | import unittest
+3 | | from pathlib import Path
+4 | | import tempfile
+5 | | from unittest.mock import patch
+6 | | from core.categorias import run_category_scraping
+  | |_________________________________________________^
+help: Organize imports
+  |
+1 + import tempfile
+2 | import threading
+3 | import unittest
+4 | from pathlib import Path
+  - import tempfile
+5 | from unittest.mock import patch
+6 +
+7 | from core.categorias import run_category_scraping
+  |
+
+I001 [*] Import block is un-sorted or un-formatted
+ --> tests/test_core.py:1:1
+  |
+1 | / import sys
+2 | | from pathlib import Path
+  | |________________________^
+3 |   sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+  |
+help: Organize imports
+  |
+2 | from pathlib import Path
+3 +
+4 | sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+  |
+
+I001 [*] Import block is un-sorted or un-formatted
+ --> tests/test_corpus.py:1:1
+  |
+1 | / import unittest
+2 | | from pathlib import Path
+3 | | from bs4 import BeautifulSoup
+4 | | from core.procesador import WebProcessor
+  | |________________________________________^
+help: Organize imports
+  |
+2 | from pathlib import Path
+3 +
+4 | from bs4 import BeautifulSoup
+5 +
+6 | from core.procesador import WebProcessor
+  |
+
+I001 [*] Import block is un-sorted or un-formatted
+ --> tests/test_dataset.py:1:1
+  |
+1 | / import re
+2 | | import unittest
+3 | |
+4 | | from core.dataset import PROFILES, normalize_url, quality_score, select_documents, get_profile
+  | |______________________________________________________________________________________________^
+help: Organize imports
+  |
+3 |
+  - from core.dataset import PROFILES, normalize_url, quality_score, select_documents, get_profile
+4 + from core.dataset import PROFILES, get_profile, normalize_url, quality_score, select_documents
+5 |
+  |
+
+F401 [*] `re` imported but unused
+ --> tests/test_dataset.py:1:8
+  |
+1 | import re
+  |        ^^
+2 | import unittest
+  |
+help: Remove unused import: `re`
+  |
+  - import re
+1 | import unittest
+  |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> tests/test_pipeline.py:12:1
+   |
+10 |   sys.modules.setdefault("ddgs", types.SimpleNamespace(DDGS=object))  # ddgs no hace falta en tests
+11 |
+12 | / from core import buscadores  # noqa: E402
+13 | | from core.categorias import run_category_scraping  # noqa: E402
+14 | | from app.scraping import IntegratedCodeScraper  # noqa: E402
+15 | | from tests.helpers import LocalServer  # noqa: E402
+   | |_____________________________________^
+help: Organize imports
+   |
+11 |
+12 + from app.scraping import IntegratedCodeScraper  # noqa: E402
+13 | from core import buscadores  # noqa: E402
+14 | from core.categorias import run_category_scraping  # noqa: E402
+   - from app.scraping import IntegratedCodeScraper  # noqa: E402
+15 | from tests.helpers import LocalServer  # noqa: E402
+   |
+
+E741 Ambiguous variable name: `l`
+   --> tests/test_red_http.py:123:81
+    |
+121 |             return x * 2
+122 |
+123 |         res = run_parallel(range(6), work, max_workers=3, progress=lambda d, t, l: seen.append((d, t)),
+    |                                                                                 ^
+124 |                            on_error=lambda item, exc: -1)
+125 |         self.assertEqual(res, [0, 2, 4, -1, 8, 10])
+    |
+
+Found 22 errors.
+[*] 20 fixable with `--fix`.

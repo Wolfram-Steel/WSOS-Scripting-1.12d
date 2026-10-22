@@ -1,0 +1,24 @@
+[tool.ruff]
+line-length = 110
+exclude = [".git", ".venv", "salida", "tests/fixtures", ".pytest_cache"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E402"]
+
+[tool.mypy]
+python_version = "3.12"
+files = ["core", "app"]
+ignore_missing_imports = true
+follow_imports = "silent"
+check_untyped_defs = true
+warn_unused_ignores = true
+no_implicit_optional = true
+show_error_codes = true
+
+[tool.bandit]
+targets = ["core", "app"]
+exclude_dirs = ["tests"]

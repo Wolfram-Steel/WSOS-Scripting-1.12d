@@ -1,0 +1,174 @@
+Run started:2026-10-21 15:16:51.606429
+
+Test results:
+>> Issue: [B110:try_except_pass] Try, Except, Pass detected.
+   Severity: Low   Confidence: High
+   Location: ./app/ui.py:359
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b110_try_except_pass.html
+358	                categories_list_column.update()
+359	            except Exception:
+360	                pass  # nosec B110 - Ignora excepciones de componentes visuales ya desmontados
+
+--------------------------------------------------
+>> Issue: [B110:try_except_pass] Try, Except, Pass detected.
+   Severity: Low   Confidence: High
+   Location: ./app/ui.py:529
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b110_try_except_pass.html
+528	                self.log_view.update()
+529	            except Exception:
+530	                pass  # nosec B110 - Ignora excepciones al volcar cola de logs
+
+--------------------------------------------------
+>> Issue: [B110:try_except_pass] Try, Except, Pass detected.
+   Severity: Low   Confidence: High
+   Location: ./app/ui.py:541
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b110_try_except_pass.html
+540	            self.progress_bar.update()
+541	        except Exception:
+542	            pass  # nosec B110 - Ignora excepciones de actualización de barra de progreso
+
+--------------------------------------------------
+>> Issue: [B110:try_except_pass] Try, Except, Pass detected.
+   Severity: Low   Confidence: High
+   Location: ./app/ui.py:557
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b110_try_except_pass.html
+556	            self.stats_text.update()
+557	        except Exception:
+558	            pass  # nosec B110 - Ignora excepciones de actualización de estadísticas
+
+--------------------------------------------------
+>> Issue: [B110:try_except_pass] Try, Except, Pass detected.
+   Severity: Low   Confidence: High
+   Location: ./app/ui.py:648
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b110_try_except_pass.html
+647	                self.page.update()
+648	            except Exception:
+649	                pass  # nosec B110 - Ignora excepciones al restaurar escala de botones
+
+--------------------------------------------------
+>> Issue: [B110:try_except_pass] Try, Except, Pass detected.
+   Severity: Low   Confidence: High
+   Location: ./app/ui.py:662
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b110_try_except_pass.html
+661	            self.page.update()
+662	        except Exception:
+663	            pass  # nosec B110 - Ignora excepciones al actualizar estado del botón de parada
+
+--------------------------------------------------
+>> Issue: [B110:try_except_pass] Try, Except, Pass detected.
+   Severity: Low   Confidence: High
+   Location: ./app/ui.py:762
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b110_try_except_pass.html
+761	                self.page.update()
+762	            except Exception:
+763	                pass  # nosec B110 - Ignora excepciones al restaurar la UI tras finalizar tarea
+
+--------------------------------------------------
+>> Issue: [B404:blacklist] Consider possible security implications associated with subprocess module.
+   Severity: Low   Confidence: High
+   Location: ./instalar.py:1
+   More Info: https://bandit.readthedocs.io/en/latest/blacklists/blacklist_imports.html#b404-import-subprocess
+1	import subprocess
+2	import sys
+3	from pathlib import Path
+
+--------------------------------------------------
+>> Issue: [B603:subprocess_without_shell_equals_true] subprocess call - check for execution of untrusted input.
+   Severity: Low   Confidence: High
+   Location: ./instalar.py:21
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b603_subprocess_without_shell_equals_true.html
+20	        # Ejecuta pip install usando el mismo intérprete de Python actual
+21	        subprocess.check_call([
+22	            sys.executable, "-m", "pip", "install", "--upgrade", "pip"
+23	        ])
+
+--------------------------------------------------
+>> Issue: [B603:subprocess_without_shell_equals_true] subprocess call - check for execution of untrusted input.
+   Severity: Low   Confidence: High
+   Location: ./instalar.py:24
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b603_subprocess_without_shell_equals_true.html
+23	        ])
+24	        subprocess.check_call([
+25	            sys.executable, "-m", "pip", "install", "-r", str(req_path)
+26	        ])
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   Location: ./tests/test_core.py:19
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b101_assert_used.html
+18	    )
+19	    assert "JavaScript" in text
+20	    assert "GitHub" in text
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   Location: ./tests/test_core.py:20
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b101_assert_used.html
+19	    assert "JavaScript" in text
+20	    assert "GitHub" in text
+21	    assert "index del array" in text
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   Location: ./tests/test_core.py:21
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b101_assert_used.html
+20	    assert "GitHub" in text
+21	    assert "index del array" in text
+22	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   Location: ./tests/test_core.py:27
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b101_assert_used.html
+26	    text = p.clean_text_preserving_code("Usa `print()` para mostrar el resultado.")
+27	    assert "print" in text
+28	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   Location: ./tests/test_core.py:32
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b101_assert_used.html
+31	    f = URLFilter()
+32	    assert f.sanitize_url("https://es.wikipedia.org/wiki/Python_(lenguaje)") == "https://es.wikipedia.org/wiki/Python_(lenguaje)"
+33	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   Location: ./tests/test_core.py:43
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b101_assert_used.html
+42	    )
+43	    assert quality_score(content) >= 65
+44	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   Location: ./tests/test_core.py:47
+   More Info: https://bandit.readthedocs.io/en/latest/plugins/b101_assert_used.html
+46	def test_url_normalization():
+47	    assert normalize_url("HTTPS://EXAMPLE.COM/a/?utm_source=x") == "https://example.com/a"
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 3149
+	Total lines skipped (#nosec): 13
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0.0
+		Low: 17.0
+		Medium: 0.0
+		High: 0.0
+	Total issues (by confidence):
+		Undefined: 0.0
+		Low: 0.0
+		Medium: 0.0
+		High: 17.0
+Files skipped (0):
